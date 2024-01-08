@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->unsignedDecimal('rate')->nullable();
             $table->unsignedInteger('count')->nullable();
+            $table->timestamps();
         });
     }
 
