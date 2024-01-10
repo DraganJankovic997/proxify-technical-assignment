@@ -26,12 +26,6 @@ class FetchProductsCommand extends Command
      */
     public function handle(FetchProductsHandlerContract $handler)
     {
-        $products = $handler->handle();
-
-        gettype($products);
-
-        foreach ($products as $product) {
-            print_r($product);
-        }
+        $handler->handle();
     }
 }

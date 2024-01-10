@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('id')->nullable(false)->unique();
             $table->string('title')->nullable();
             $table->unsignedDecimal('price')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description', 1000)->nullable();
             $table->string('category')->nullable();
             $table->string('image')->nullable();
             $table->unsignedDecimal('rate')->nullable();
