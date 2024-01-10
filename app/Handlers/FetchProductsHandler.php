@@ -24,7 +24,5 @@ final class FetchProductsHandler implements FetchProductsHandlerContract {
         foreach ($products as $product) {
             $this->productService->saveOrUpdate($product);
         }
-
-
     }
 }

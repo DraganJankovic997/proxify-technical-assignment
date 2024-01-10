@@ -19,13 +19,19 @@ class FetchProductsCommand extends Command
      *
      * @var string
      */
-    protected $description = 'This command sends a GET request to the Store API and saves or updates the products in the localdatabase';
+    protected $description = 'This command sends a GET request to the Store API and saves or updates the products in the local database';
 
     /**
      * Execute the console command.
      */
     public function handle(FetchProductsHandlerContract $handler)
     {
-        $handler->handle();
+        try {
+            $handler->handle();
+            echo 'Product fetching complete.';
+        } catch (\Exception $exception) {
+            echo 'Product fetching failed with message: ' . $exception->getMessage();
+            echo $exception->getTrace();
+        }
     }
 }

@@ -10,7 +10,9 @@ final class ProductService implements ProductServiceContract {
     function saveOrUpdate(array $product)
     {
         return Product::updateOrCreate(
-            ['id' => $product['id']],
+            [
+                'id' => $product['id']
+            ],
             [
                 'title' => $product['title'],
                 'price' => $product['price'],
