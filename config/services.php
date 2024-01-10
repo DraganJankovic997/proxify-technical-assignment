@@ -34,6 +34,5 @@ return [
     'fakeStore' => [
         'url' => env('FAKE_STORE_URL', 'http://fakestoreapi.com/'),
         'slug' => env('FAKE_STORE_SLUG', 'products'),
-        'limit' => env('FAKE_STORE_LIMIT', 50),
     ],
 ];

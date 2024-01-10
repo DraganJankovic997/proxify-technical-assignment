@@ -2,10 +2,8 @@
 
 namespace App\Handlers;
 
-use App\Commands\FetchProductsCommand;
 use App\Contracts\Handlers\FetchProductsHandlerContract;
 use App\Contracts\Services\StoreServiceContract;
-use App\Services\Store\FakeStoreService;
 
 final class FetchProductsHandler implements FetchProductsHandlerContract {
 
@@ -15,8 +13,8 @@ final class FetchProductsHandler implements FetchProductsHandlerContract {
         $this->storeService = $storeService;
     }
 
-    public function handle(FetchProductsCommand $command)
+    public function handle()
     {
-        return $this->storeService->getProducts($command->limit);
+        return $this->storeService->getProducts();
     }
 }
