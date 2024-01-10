@@ -11,7 +11,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('App\Contracts\Services\StoreServiceContract', 'App\Services\Store\FakeStoreService');
+        $this->app->bind('App\Contracts\Services\ProductServiceContract', 'App\Services\ProductService');
+
+        $this->app->bind('App\Contracts\Handlers\FetchProductsHandlerContract', 'App\Handlers\FetchProductsHandler');
     }
 
     /**
