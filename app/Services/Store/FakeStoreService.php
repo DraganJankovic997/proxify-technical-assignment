@@ -9,6 +9,6 @@ final class FakeStoreService implements StoreServiceContract {
 
     public function getProducts()
     {
-        return Http::get(config('services.fakeStore.url') . config('services.fakeStore.slug'));
+        return Http::get(config('services.fakeStore.url') . config('services.fakeStore.slug'))->json();
     }
 }
