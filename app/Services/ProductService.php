@@ -23,4 +23,16 @@ final class ProductService implements ProductServiceContract {
                 'count' => $product['rating']['count'],
             ]);
     }
+
+    function update(string $uuid, ?string $title, ?string $description, ?string $price, ?string $image)
+    {
+        $product = Product::where('uuid', $uuid)->firstOrFail();
+
+        $product->title = $title ?? $product->title;
+        $product->description = $description ?? $product->description;
+        $product->price = $price ?? $product->price;
+        $product->image = $image ?? $product->image;
+
+        return $product->save();
+    }
 }
