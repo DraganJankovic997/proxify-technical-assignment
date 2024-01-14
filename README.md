@@ -7,6 +7,11 @@ For more information on Laravel visit: https://laravel.com/docs/10.x
 This project is a Laravel application that implements the Fake Store API (https://fakestoreapi.com/docs), fetching the data and importing them into a local MySQL database.
 Tools used are Laravel, PHP and MySQL.
 
+## Code style
+
+In this project we use Laravel Pint, with a default Laravel preset as a code style fixer.
+You can run it by using `./vendor/bin/pint`.
+
 ## Project Setup
 
 ### Environment
