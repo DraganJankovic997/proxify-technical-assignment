@@ -10,7 +10,7 @@ Tools used are Laravel, PHP and MySQL.
 ## Code style
 
 In this project we use Laravel Pint, with a default Laravel preset as a code style fixer.
-You can run it by using `./vendor/bin/pint`.
+You can run it by running `./vendor/bin/pint`.
 
 ## Project Setup
 
