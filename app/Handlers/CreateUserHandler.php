@@ -5,13 +5,13 @@ namespace App\Handlers;
 use App\Commands\CreateUserCommand;
 use App\Contracts\Handlers\CreateUserHandlerContract;
 use App\Contracts\Services\UserServiceContract;
-use Illuminate\Support\Facades\Hash;
 
 class CreateUserHandler implements CreateUserHandlerContract
 {
     private UserServiceContract $userService;
 
-    public function __construct(UserServiceContract $userService) {
+    public function __construct(UserServiceContract $userService)
+    {
         $this->userService = $userService;
     }
 
@@ -24,7 +24,7 @@ class CreateUserHandler implements CreateUserHandlerContract
         );
 
         return [
-            'token' => $user->createToken('apiToken')->plainTextToken
+            'token' => $user->createToken('apiToken')->plainTextToken,
         ];
     }
 }

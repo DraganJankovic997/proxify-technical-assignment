@@ -7,17 +7,17 @@ use App\Models\User;
 
 class UserService implements UserServiceContract
 {
-
     public function createUser(string $name, string $email, string $password)
     {
         return User::create([
             'name' => $name,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
     }
 
-    public function findUserByEmail(string $email) {
+    public function findUserByEmail(string $email)
+    {
         return User::where('email', $email)->firstOrFail();
     }
 }

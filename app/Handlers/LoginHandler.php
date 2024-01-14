@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginHandler implements LoginHandlerContract
 {
-
     private UserServiceContract $userService;
 
-    public function __construct(UserServiceContract $userService) {
+    public function __construct(UserServiceContract $userService)
+    {
         $this->userService = $userService;
     }
 
@@ -21,12 +21,12 @@ class LoginHandler implements LoginHandlerContract
     {
         $user = $this->userService->findUserByEmail($command->email);
 
-        if(!Hash::check($command->password, $user->password)) {
+        if (! Hash::check($command->password, $user->password)) {
             throw new InvalidCredentialsException();
         }
 
         return [
-            'token' => $user->createToken('apiToken')->plainTextToken
+            'token' => $user->createToken('apiToken')->plainTextToken,
         ];
     }
 }

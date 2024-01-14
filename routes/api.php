@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UpdateProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UpdateProductController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +21,3 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::post('/auth/register', [AuthController::class, 'signUp']);
 Route::post('/auth/login', [AuthController::class, 'login']);
-
-

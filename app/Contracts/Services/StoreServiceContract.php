@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Services;
 
-interface StoreServiceContract {
+interface StoreServiceContract
+{
     public function getProducts();
 }

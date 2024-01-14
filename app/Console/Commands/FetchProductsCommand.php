@@ -30,7 +30,7 @@ class FetchProductsCommand extends Command
             $handler->handle();
             echo 'Product fetching complete.';
         } catch (\Exception $exception) {
-            echo 'Product fetching failed with message: ' . $exception->getMessage();
+            echo 'Product fetching failed with message: '.$exception->getMessage();
             echo $exception->getTrace();
         }
     }

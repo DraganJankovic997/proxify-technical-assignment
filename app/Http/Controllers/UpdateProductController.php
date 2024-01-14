@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Commands\UpdateProductCommand;
 use App\Contracts\Handlers\UpdateProductHandlerContract;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+
 class UpdateProductController extends Controller
 {
-
     private UpdateProductHandlerContract $handler;
 
-    public function __construct(UpdateProductHandlerContract $handler) {
+    public function __construct(UpdateProductHandlerContract $handler)
+    {
         $this->handler = $handler;
     }
 
-    public function update(Request $request, string $uuid) {
+    public function update(Request $request, string $uuid)
+    {
 
         $validated = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
@@ -33,11 +35,10 @@ class UpdateProductController extends Controller
                 $validated['image'] ?? null
             );
 
-
             return response($this->handler->handle($command), 200);
-        } catch(ModelNotFoundException $ex){
+        } catch (ModelNotFoundException $ex) {
             return response('Product with UUID does not exist.', 404);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             return response('Internal server error', 500);
         }
     }
