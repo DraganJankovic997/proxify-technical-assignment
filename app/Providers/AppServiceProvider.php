@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Handlers\FetchProductsHandlerContract', 'App\Handlers\FetchProductsHandler');
         $this->app->bind('App\Contracts\Handlers\UpdateProductHandlerContract', 'App\Handlers\UpdateProductHandler');
         $this->app->bind('App\Contracts\Handlers\CreateUserHandlerContract', 'App\Handlers\CreateUserHandler');
+        $this->app->bind('App\Contracts\Handlers\LoginHandlerContract', 'App\Handlers\LoginHandler');
     }
 
     /**

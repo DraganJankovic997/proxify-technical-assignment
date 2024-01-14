@@ -16,4 +16,8 @@ class UserService implements UserServiceContract
             'password' => $password
         ]);
     }
+
+    public function findUserByEmail(string $email) {
+        return User::where('email', $email)->firstOrFail();
+    }
 }

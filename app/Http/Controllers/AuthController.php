@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Commands\CreateUserCommand;
+use App\Commands\LoginCommand;
 use App\Contracts\Handlers\CreateUserHandlerContract;
+use App\Contracts\Handlers\LoginHandlerContract;
+use App\Exceptions\InvalidCredentialsException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
 
-    private CreateUserHandlerContract $handler;
+    private CreateUserHandlerContract $signupHandler;
+    private LoginHandlerContract $loginHandler;
 
-    public function __construct(CreateUserHandlerContract $handler) {
-        $this->handler = $handler;
+    public function __construct(CreateUserHandlerContract $signupHandler, LoginHandlerContract $loginHandler) {
+        $this->signupHandler = $signupHandler;
+        $this->loginHandler = $loginHandler;
     }
 
     public function signUp(Request $request) {
@@ -31,10 +35,29 @@ class AuthController extends Controller
                 $validated['password']
             );
 
-            return response($this->handler->handle($command), 201);
+            return response($this->signupHandler->handle($command), 201);
         } catch(\Exception $ex) {
             return response('Internal server error.', 500);
         }
 
+    }
+
+    public function login(Request $request) {
+        $validated = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        try {
+            $command = new LoginCommand($validated['email'], $validated['password']);
+
+            return response($this->loginHandler->handle($command), 200);
+        } catch(InvalidCredentialsException $ex) {
+            return response('incorrect username or password', 400);
+        } catch(ModelNotFoundException $ex) {
+            return response('User with that email does not exist', 404);
+        } catch(\Exception $ex) {
+            return response('Internal server error', 500);
+        }
     }
 }
