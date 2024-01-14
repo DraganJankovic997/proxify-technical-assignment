@@ -53,7 +53,7 @@ class AuthController extends Controller
 
             return response($this->loginHandler->handle($command), 200);
         } catch(InvalidCredentialsException $ex) {
-            return response('incorrect username or password', 400);
+            return response('Incorrect username or password', 400);
         } catch(ModelNotFoundException $ex) {
             return response('User with that email does not exist', 404);
         } catch(\Exception $ex) {
