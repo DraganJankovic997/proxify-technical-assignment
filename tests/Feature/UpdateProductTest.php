@@ -10,9 +10,7 @@ use App\Models\User;
 class UpdateProductTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * A basic feature test example.
-     */
+
     public function test_user_can_update_product(): void
     {
         $user =  User::factory()->create();
@@ -26,7 +24,7 @@ class UpdateProductTest extends TestCase
             'price' => 99.99,
             'description' => 'Test description',
             'category' => 'Test category',
-            'image' => 'http://example.com/image',
+            'image' => 'https://example.com/image',
             'rate' => 3.3,
             'count' => 250
         ];
@@ -54,5 +52,25 @@ class UpdateProductTest extends TestCase
             'uuid' => $uuid
         ]);
 
+    }
+
+    public function test_user_cannot_update_nonexistent_product(): void
+    {
+        // Create a user and get the token.
+        $user = User::factory()->create();
+        $token = $user->createToken('test-token')->plainTextToken;
+
+        // Generate a uuid that doesn't exist in your database
+        $nonexistentUuid = 'non-existent-uuid';
+
+        // Try to update product with non-existent uuid
+        $response = $this->put(
+            '/api/product/' . $nonexistentUuid,
+            ['title' => 'New test title'],
+            ['Authorization' => 'Bearer ' . $token]
+        );
+
+        // Assert that the response status is a 404 (not found).
+        $response->assertStatus(404);
     }
 }

@@ -10,9 +10,7 @@ class SignUpTest extends TestCase
 {
 
     use RefreshDatabase;
-    /**
-     * A basic feature test example.
-     */
+
     public function test_user_can_sign_up(): void
     {
         $response = $this->post('/api/auth/register', [
