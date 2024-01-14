@@ -13,9 +13,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Contracts\Services\StoreServiceContract', 'App\Services\Store\FakeStoreService');
         $this->app->bind('App\Contracts\Services\ProductServiceContract', 'App\Services\ProductService');
+        $this->app->bind('App\Contracts\Services\UserServiceContract', 'App\Services\UserService');
 
         $this->app->bind('App\Contracts\Handlers\FetchProductsHandlerContract', 'App\Handlers\FetchProductsHandler');
         $this->app->bind('App\Contracts\Handlers\UpdateProductHandlerContract', 'App\Handlers\UpdateProductHandler');
+        $this->app->bind('App\Contracts\Handlers\CreateUserHandlerContract', 'App\Handlers\CreateUserHandler');
     }
 
     /**

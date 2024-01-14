@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\UpdateProductController;
+use App\Http\Controllers\UpdateProductController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,10 @@ use \App\Http\Controllers\UpdateProductController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::put('product/{uuid}', [UpdateProductController::class, 'update'])->whereUuid('id');
 });
 
-Route::put('product/{uuid}', [UpdateProductController::class, 'update'])->whereUuid('id');
+Route::post('/auth/register', [AuthController::class, 'signUp']);
+
+
