@@ -4,6 +4,7 @@ namespace App\Contracts\Handlers;
 
 use App\Commands\UpdateProductCommand;
 
-interface UpdateProductHandlerContract {
+interface UpdateProductHandlerContract
+{
     public function handle(UpdateProductCommand $command);
 }

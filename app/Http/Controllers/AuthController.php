@@ -12,16 +12,18 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
     private CreateUserHandlerContract $signupHandler;
+
     private LoginHandlerContract $loginHandler;
 
-    public function __construct(CreateUserHandlerContract $signupHandler, LoginHandlerContract $loginHandler) {
+    public function __construct(CreateUserHandlerContract $signupHandler, LoginHandlerContract $loginHandler)
+    {
         $this->signupHandler = $signupHandler;
         $this->loginHandler = $loginHandler;
     }
 
-    public function signUp(Request $request) {
+    public function signUp(Request $request)
+    {
         $validated = $request->validate([
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -36,27 +38,28 @@ class AuthController extends Controller
             );
 
             return response($this->signupHandler->handle($command), 201);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             return response('Internal server error.', 500);
         }
 
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $validated = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
         ]);
 
         try {
             $command = new LoginCommand($validated['email'], $validated['password']);
 
             return response($this->loginHandler->handle($command), 200);
-        } catch(InvalidCredentialsException $ex) {
+        } catch (InvalidCredentialsException $ex) {
             return response('Incorrect username or password', 400);
-        } catch(ModelNotFoundException $ex) {
+        } catch (ModelNotFoundException $ex) {
             return response('User with that email does not exist', 404);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             return response('Internal server error', 500);
         }
     }

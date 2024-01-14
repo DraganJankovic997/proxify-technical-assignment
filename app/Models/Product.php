@@ -11,8 +11,11 @@ class Product extends Model
     use HasFactory, HasUuids;
 
     public $timestamps = true;
+
     protected $table = 'products';
+
     protected $primaryKey = 'uuid';
+
     protected $fillable = [
         'id',
         'title',
@@ -21,6 +24,6 @@ class Product extends Model
         'category',
         'image',
         'rate',
-        'count'
+        'count',
     ];
 }

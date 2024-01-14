@@ -8,10 +8,10 @@ use App\Contracts\Services\ProductServiceContract;
 
 class UpdateProductHandler implements UpdateProductHandlerContract
 {
-
     private ProductServiceContract $productService;
 
-    public function __construct(ProductServiceContract $productService) {
+    public function __construct(ProductServiceContract $productService)
+    {
         $this->productService = $productService;
     }
 
@@ -26,4 +26,3 @@ class UpdateProductHandler implements UpdateProductHandlerContract
         );
     }
 }
-

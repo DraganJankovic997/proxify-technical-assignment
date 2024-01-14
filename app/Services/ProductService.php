@@ -5,13 +5,13 @@ namespace App\Services;
 use App\Contracts\Services\ProductServiceContract;
 use App\Models\Product;
 
-final class ProductService implements ProductServiceContract {
-
-    function saveOrUpdate(array $product)
+final class ProductService implements ProductServiceContract
+{
+    public function saveOrUpdate(array $product)
     {
         return Product::updateOrCreate(
             [
-                'id' => $product['id']
+                'id' => $product['id'],
             ],
             [
                 'title' => $product['title'],
@@ -24,7 +24,7 @@ final class ProductService implements ProductServiceContract {
             ]);
     }
 
-    function update(string $uuid, ?string $title, ?string $description, ?string $price, ?string $image)
+    public function update(string $uuid, ?string $title, ?string $description, ?string $price, ?string $image)
     {
         $product = Product::where('uuid', $uuid)->firstOrFail();
 

@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Handlers;
 
-interface FetchProductsHandlerContract {
+interface FetchProductsHandlerContract
+{
     public function handle();
 }
