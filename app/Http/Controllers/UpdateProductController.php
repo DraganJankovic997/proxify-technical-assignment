@@ -16,6 +16,7 @@ class UpdateProductController extends Controller
     }
 
     public function update(Request $request, string $uuid) {
+
         $validated = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:1000'],
