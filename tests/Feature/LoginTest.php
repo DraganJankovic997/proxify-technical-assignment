@@ -15,13 +15,12 @@ class LoginTest extends TestCase
             'name' => 'Login Test',
             'email' => 'login_test@gmail.com',
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ]);
-
 
         $response = $this->post('/api/auth/login', [
             'email' => 'login_test@gmail.com',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertStatus(200);

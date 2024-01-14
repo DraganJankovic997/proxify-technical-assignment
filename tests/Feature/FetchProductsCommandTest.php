@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Faker\Core\Uuid;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
 use Illuminate\Support\Facades\Http;
+use Tests\TestCase;
 
 class FetchProductsCommandTest extends TestCase
 {
@@ -15,7 +14,7 @@ class FetchProductsCommandTest extends TestCase
     public function test_command_inserts_new_products(): void
     {
         Http::fake([
-            'http://fakestoreapi.com/products' => Http::response($this->getproductsArray())
+            'http://fakestoreapi.com/products' => Http::response($this->getproductsArray()),
         ]);
         $this->assertEquals(DB::table('products')->count(), 0);
         $this->artisan('fetch-products');
@@ -26,7 +25,7 @@ class FetchProductsCommandTest extends TestCase
     public function test_command_updates_existing_products(): void
     {
         Http::fake([
-            'http://fakestoreapi.com/products' => Http::response($this->getproductsArray())
+            'http://fakestoreapi.com/products' => Http::response($this->getproductsArray()),
         ]);
 
         DB::table('products')->insert([
@@ -38,7 +37,7 @@ class FetchProductsCommandTest extends TestCase
             'category' => 'men\'s clothing',
             'image' => 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
             'rate' => 4.7,
-            'count' => 500
+            'count' => 500,
         ]);
 
         $prod = DB::table('products')->where('id', 3)->first();
@@ -48,7 +47,8 @@ class FetchProductsCommandTest extends TestCase
         $this->assertEquals($prod->title, 'Mens Cotton Jacket');
     }
 
-    public function getproductsArray() {
+    public function getproductsArray()
+    {
         return [
             [
                 'id' => 1,
@@ -59,8 +59,8 @@ class FetchProductsCommandTest extends TestCase
                 'image' => 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
                 'rating' => [
                     'rate' => 3.9,
-                    'count' => 120
-                ]
+                    'count' => 120,
+                ],
             ],
             [
                 'id' => 2,
@@ -71,8 +71,8 @@ class FetchProductsCommandTest extends TestCase
                 'image' => 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
                 'rating' => [
                     'rate' => 4.1,
-                    'count' => 259
-                ]
+                    'count' => 259,
+                ],
             ],
             [
                 'id' => 3,
@@ -83,9 +83,9 @@ class FetchProductsCommandTest extends TestCase
                 'image' => 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
                 'rating' => [
                     'rate' => 4.7,
-                    'count' => 500
-                ]
-            ]
+                    'count' => 500,
+                ],
+            ],
         ];
     }
 }

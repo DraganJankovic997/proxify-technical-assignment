@@ -3,12 +3,10 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SignUpTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function test_user_can_sign_up(): void
@@ -17,7 +15,7 @@ class SignUpTest extends TestCase
             'name' => 'Test Name',
             'email' => 'example@gmail.com',
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ]);
 
         $response->assertJsonStructure(['token']);
@@ -25,7 +23,7 @@ class SignUpTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'Test Name',
-            'email' => 'example@gmail.com'
+            'email' => 'example@gmail.com',
         ]);
     }
 }
